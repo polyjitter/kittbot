@@ -1,3 +1,3 @@
-from kitt.config import Config
+from kitt import config
 
-__version__ = Config.VERSION
+__version__ = config.VERSION

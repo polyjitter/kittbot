@@ -9,7 +9,7 @@ import sqlalchemy
 from hikari import Intents, Status, Activity, ActivityType
 from lightbulb.ext import tasks
 
-from kitt.config import Config
+from kitt import config
 
 if __name__ == "__main__":
     if os.name != "nt":
@@ -20,12 +20,14 @@ if __name__ == "__main__":
 
 class KittBotApp(lightbulb.BotApp):
     def __init__(self) -> None:
-        self.db = databases.Database()
+        self.db = databases.Database(f"sqlite+aiosqlite:///{config.DB_FILE}")
+        self.db.meta = sqlalchemy.MetaData()
+        self.db.tables = {}
 
         super().__init__(
-            token=Config.TOKEN,
+            token=config.TOKEN,
             intents=Intents.ALL,
-            default_enabled_guilds=(Config.HOME_ID),
+            default_enabled_guilds=(config.HOME_ID),
         )
 
     def run(self) -> None:
@@ -49,10 +51,10 @@ class KittBotApp(lightbulb.BotApp):
         await self.db.connect()
 
         print("Creating tables...")
-        metadata = sqlalchemy.MetaData()
-        dialect = sqlalchemy.dialects.postgresql.dialect()
+        
+        dialect = sqlalchemy.dialects.sqlite.dialect() # type: ignore
 
-        for table in metadata.tables.values():
+        for table in self.db.meta.tables.values():
             schema = sqlalchemy.schema.CreateTable(table, if_not_exists=True)
             query = str(schema.compile(dialect=dialect))
             await self.db.execute(query=query)

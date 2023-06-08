@@ -9,7 +9,8 @@ Restart=always
 RestartSec=5
 User=root
 WorkingDirectory=/root/kittbot
-ExecStart=poetry install && poetry run python -OO -m kitt
+ExecStartPre=poetry install
+ExecStart=poetry run python -OO -m kitt
 
 [Install]
 WantedBy=multi-user.target

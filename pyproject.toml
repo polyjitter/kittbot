@@ -12,7 +12,12 @@ hikari = "^2.0.0.dev119"
 hikari-toolbox = "^0.1.5"
 hikari-miru = "^3.1.1"
 databases = {extras = ["aiosqlite"], version = "^0.7.0"}
-
+toml = "^0.10.2"
+hikari-lightbulb = "^2.3.3"
+uvloop = [
+    {version = "^0.17.0", platform = "linux"},
+    {version = "^0.17.0", platform = "darwin"},
+]
 
 [build-system]
 requires = ["poetry-core"]

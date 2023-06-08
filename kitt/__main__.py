@@ -5,7 +5,6 @@ import hikari
 import lightbulb
 import miru
 from hikari import Intents, Status, Activity, ActivityType
-from lightbulb import checks
 from lightbulb.ext import tasks
 
 from kitt.config import Config

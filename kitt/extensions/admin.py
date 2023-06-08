@@ -12,7 +12,12 @@ admin = lightbulb.Plugin("Admin")
 
 @admin.command
 @lightbulb.option("message", "Message to post", type=str)
-@lightbulb.option("channel", "Channel to post to", type=hikari.TextableGuildChannel)
+@lightbulb.option(
+    "channel",
+    "Channel to post to",
+    type=hikari.TextableGuildChannel,
+    channel_types=[hikari.ChannelType.GUILD_TEXT],
+)
 @lightbulb.command("postas", f"Post a message as {Config.BOTNAME}")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def postas(ctx: lightbulb.Context) -> None:

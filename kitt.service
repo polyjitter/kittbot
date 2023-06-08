@@ -1,0 +1,12 @@
+[Unit]
+Description = KITT Discord Service
+After=network.target
+StartLimmitIntetrvalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=root
+WorkingDirectory=/root/kittbot
+ExecStart=poetry install && poetry run py -m kitt

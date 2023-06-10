@@ -12,12 +12,13 @@ utils = lightbulb.Plugin("Utilities")
 
 @utils.command
 @lightbulb.option("format", "Format for the timestamp.", choices=[
-    CommandChoice(name="Relative Time (x seconds ago)", value="R"),
-    CommandChoice(name="Long Date (Month XX, XXXX)", value="D"),
+    CommandChoice(name="Short Time (XX:XX AM/PM)", value="t"),
     CommandChoice(name="Short Date (XX/XX/XXXX)", value="d"),
-    CommandChoice(name="Long Time (XX:XX:XX AM/PM)", value="T"),
-    CommandChoice(name="Long Date/Time (Day, Month XX, XXXX XX:XX:XX AM/PM)", value="F"),
     CommandChoice(name="Short Date/Time (Month XX, XXXX AM/PM)", value="f"),
+    CommandChoice(name="Long Time (XX:XX:XX AM/PM)", value="T"),
+    CommandChoice(name="Long Date (Month XX, XXXX)", value="D"),
+    CommandChoice(name="Long Date/Time (Day, Month XX, XXXX XX:XX:XX AM/PM)", value="F"),
+    CommandChoice(name="Relative Time (x seconds ago)", value="R"),
 ])
 @lightbulb.option("time", "Time to create a timestamp for (Optional)", required=False)
 @lightbulb.command("timestamp", "Get a timestamp in Discord format.", ephemeral=True)

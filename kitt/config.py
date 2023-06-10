@@ -16,5 +16,5 @@ with open("./config.toml") as f:
     MAINTENANCE: Final = _config["bot"]["maintenance"]
     HOME_ID: Final = _config["bot"]["home_guild"]
     BOTNAME: Final = _config["bot"]["name"]
-    
+
     DB_FILE: Final = _config["db"]["file"]

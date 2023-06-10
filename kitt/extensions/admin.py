@@ -1,7 +1,6 @@
 import hikari
 import lightbulb
-import miru
-from hikari import ButtonStyle
+from lightbulb import Context, SlashCommand
 from hikari.embeds import Embed
 
 from kitt import config
@@ -18,12 +17,12 @@ admin = lightbulb.Plugin("Admin")
     type=hikari.TextableGuildChannel,
     channel_types=[hikari.ChannelType.GUILD_TEXT],
 )
-@lightbulb.command("postas", f"Post a message as {config.BOTNAME}")
-@lightbulb.implements(lightbulb.SlashCommand)
-async def postas(ctx: lightbulb.Context) -> None:
+@lightbulb.command("postas", f"Post a message as {config.BOTNAME}", ephemeral=True)
+@lightbulb.implements(SlashCommand)
+async def postas(ctx: Context) -> None:
     """Creates a new post as the bot, with a confirmation dialog."""
 
-    body = "# Post Message?"
+    body = "## Post Message?"
     embed = Embed()
     embed.add_field("Channel", ctx.options.channel.mention)
     embed.add_field("Message", ctx.options.message)
@@ -37,7 +36,9 @@ async def postas(ctx: lightbulb.Context) -> None:
 
     match view.answer:
         case True:
-            await ctx.bot.rest.create_message(ctx.options.channel.id, ctx.options.message)
+            await ctx.bot.rest.create_message(
+                ctx.options.channel.id, ctx.options.message
+            )
             await response.edit(
                 f"**Message posted.** Please check {ctx.options.channel.mention}.",
                 embed=None,

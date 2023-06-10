@@ -9,7 +9,7 @@ Restart=always
 RestartSec=5
 User=root
 WorkingDirectory=/root/kittbot
-ExecStartPre=poetry install
+ExecStartPre=poetry update
 ExecStart=poetry run python -OO -m kitt
 
 [Install]

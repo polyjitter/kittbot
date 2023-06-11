@@ -14,5 +14,7 @@ def load(bot):
         is_posted: Mapped[bool]
         message_contents: Mapped[str]
 
+    bot.tables['queueposts'] = QueuePost
+
 def unload(bot):
     pass

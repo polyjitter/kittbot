@@ -22,6 +22,8 @@ class BotApp(lightbulb.BotApp):
 
         self.Base = Base
 
+        self.tables = []
+
         super().__init__(
             token=config.TOKEN,
             intents=Intents.ALL,
